@@ -1,0 +1,9 @@
+[package]
+name = "ghdata"
+version = "0.1.0"
+authors = ["edvinas"]
+
+[dependencies]
+github-rs = "0.6"
+serde_json = "1.0"
+mysql = "*"

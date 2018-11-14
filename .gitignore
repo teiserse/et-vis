@@ -1,0 +1,28 @@
+/ghdata/.idea
+/ghdata/target
+/ghdata/**/*.rs.bk
+/ghdata/Cargo.lock
+/ghdata/*.iml
+
+# Ignore bundler config.
+/et-vis/.bundle
+
+# Ignore all logfiles and tempfiles.
+/et-vis/log/*
+/et-vis/tmp/*
+!/et-vis/log/.keep
+!/et-vis/tmp/.keep
+
+# Ignore uploaded files in development
+/et-vis/storage/*
+!/et-vis/storage/.keep
+
+/et-vis/node_modules
+/et-vis/yarn-error.log
+
+/et-vis/public/assets
+/et-vis/.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/et-vis/config/master.key
+
