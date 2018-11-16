@@ -4,7 +4,7 @@ extern crate mysql;
 use github_rs::client::{Executor, Github};
 use serde_json::Value;
 use serde_json::to_string_pretty;
-
+use mysql;
 
 fn main() {
     let client = Github::new("af374f41456a915d346f97cfdd42cf1d30df0b58").unwrap();
@@ -24,4 +24,7 @@ fn main() {
         },
         Err(e) => println!("{}", e)
     }
+
+    let pool = mysql::Pool::new("mysql://et-vis:et-vis@localhost:3307/et-vis").unwrap();
+    
 }
