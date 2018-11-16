@@ -12,8 +12,7 @@ fn main() {
     let file = fs::read_to_string("../DETAILS").unwrap();
     let re_find = Regex::new(r"token:[ \t]*([0-9a-f]+)[\n]").unwrap();
     let token = &re_find.captures(&file).unwrap()[1];
-    println!("{}", token);
-    let client = Github::new("af374f41456a915d346f97cfdd42cf1d30df0b58").unwrap();
+    let client = Github::new(token).unwrap();
     let me = client.get()
         .repos()
         .owner("rust-lang")
