@@ -1,5 +1,6 @@
 #To be configured by the user.
-#This will be used to keep data not to be pushed to the repo.
+#A file 'DETAILS' will be used to keep data not to be pushed to the repo.
+#When setting up the file, rename this file to remove the '.example' extension
 #Values are read as from the colon to end of line, ignoring whitespace
 
 token: #GitHub API Token goes here
