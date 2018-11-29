@@ -30,8 +30,8 @@ function drawVis(data){
     .attr("width", centre_x * 2)
     .attr("height",centre_y * 2);
 
-  var centreRadius = Math.sqrt(data[0]['viewers']);
-  var prevRadius = Math.sqrt(data[1]['viewers']);
+  var centreRadius = Math.sqrt(data[0]['viewers']) + 15;
+  var prevRadius = Math.sqrt(data[1]['viewers']) + 15;
   var prevAngle = 0;
 
   var circle1 = container.append("circle")
@@ -40,7 +40,16 @@ function drawVis(data){
     .attr("r",centreRadius)
     .attr("fill","#b7410e")
     .append("svg:title")
-    .text(data[0]['repo']);
+    .text(data[0]['repo'] + " - " + data[0]['viewers'] + " Viewers");
+
+  var centreText = container
+    .append("text")
+    .attr("x",centre_x)
+    .attr("y",centre_y)
+    .text("Placeholder Text")
+    .attr("font-family","sans-serif")
+    .attr("font-size","20px")
+    .attr("text-anchor","middle");
 
   var circle2 = container.append("circle")
     .attr("cx",centre_x + centreRadius + prevRadius)
@@ -48,10 +57,10 @@ function drawVis(data){
     .attr("r",prevRadius)
     .attr("fill","#b7950e")
     .append("svg:title")
-    .text(data[1]['repo']);
+    .text(data[1]['repo'] + " - " + data[1]['viewers'] + " Viewers");
 
   for (var index = 2; index < 30; index++){
-    var newRadius = Math.sqrt(data[index]['viewers']);
+    var newRadius = Math.sqrt(data[index]['viewers'] + 25);
     var currentAngle = Math.acos(
       (Math.pow(centreRadius + newRadius, 2) + Math.pow(centreRadius + prevRadius, 2) - Math.pow(prevRadius + newRadius, 2)) 
       /(2 * (centreRadius + newRadius) * (centreRadius + prevRadius)));
@@ -64,7 +73,7 @@ function drawVis(data){
       .attr("r", newRadius)
       .attr("fill",index % 2 == 0?'#b7410e':'#b7950e')
       .append("svg:title")
-      .text(data[index]['repo']);
+      .text(data[index]['repo'] + " - " + data[index]['viewers'] + " Viewers");
 
     prevRadius = newRadius;
   }
