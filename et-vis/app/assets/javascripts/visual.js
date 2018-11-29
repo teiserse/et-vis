@@ -42,13 +42,22 @@ function drawVis(data){
     .append("svg:title")
     .text(data[0]['repo'] + " - " + data[0]['viewers'] + " Viewers");
 
-  var centreText = container
+  var centreText1 = container
     .append("text")
     .attr("x",centre_x)
-    .attr("y",centre_y)
-    .text("Placeholder Text")
+    .attr("y",centre_y - 20)
+    .text(data[0]['owner'] + "/" + data[0]['repo'])
     .attr("font-family","sans-serif")
     .attr("font-size","20px")
+    .attr("text-anchor","middle");
+
+  var centreText2 = container
+    .append("text")
+    .attr("x",centre_x)
+    .attr("y",centre_y + 20)
+    .text(data[0]['viewers'] + " Viewers")
+    .attr("font-family","sans-serif")
+    .attr("font-size","18px")
     .attr("text-anchor","middle");
 
   var circle2 = container.append("circle")
@@ -58,6 +67,15 @@ function drawVis(data){
     .attr("fill","#b7950e")
     .append("svg:title")
     .text(data[1]['repo'] + " - " + data[1]['viewers'] + " Viewers");
+    
+  var circle2text = container
+    .append("text")
+    .attr("x",centre_x + centreRadius + prevRadius)
+    .attr("y",centre_y)
+    .text(data[1]['repo'])
+    .attr("font-family","sans-serif")
+    .attr("font-size",prevRadius / 4 + "px")
+    .attr("text-anchor","middle");
 
   for (var index = 2; index < 30; index++){
     var newRadius = Math.sqrt(data[index]['viewers'] + 25);
@@ -74,7 +92,16 @@ function drawVis(data){
       .attr("fill",index % 2 == 0?'#b7410e':'#b7950e')
       .append("svg:title")
       .text(data[index]['repo'] + " - " + data[index]['viewers'] + " Viewers");
-
+    if (newRadius > 30){
+    var newText = container
+      .append("text")
+      .attr("x",centre_x + ((centreRadius + newRadius) * Math.cos(prevAngle)))
+      .attr("y",centre_y + ((centreRadius + newRadius) * Math.sin(prevAngle)))
+      .text(data[index]['repo'])
+      .attr("font-family","sans-serif")
+      .attr("font-size",newRadius / 4 + "px")
+      .attr("text-anchor","middle");
+    }
     prevRadius = newRadius;
   }
 
